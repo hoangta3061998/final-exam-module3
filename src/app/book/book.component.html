@@ -1,0 +1,59 @@
+<h2>Book Management</h2>
+
+<form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label>
+      Title:
+      <br>
+      <input type="text" formControlName="title">
+    </label>
+  </div>
+  <div *ngIf="bookForm.get('title').invalid && bookForm.get('title').touched" style="color: red">
+    Title is required and min length is 5
+  </div>
+  <div>
+    <label>
+      Author:
+      <br>
+      <input type="text" formControlName="author">
+    </label>
+  </div>
+  <div *ngIf="bookForm.get('author').invalid && bookForm.get('author').touched" style="color: red">
+    Author is required!
+  </div>
+  <div>
+    <label>
+      Description:
+      <br>
+      <input type="text" formControlName="description">
+    </label>
+  </div>
+  <button type="submit">Submit</button>
+</form>
+
+
+<h5>Co {{bookList.length}} cuon sach</h5>
+<table border="1px solid black">
+  <tr>
+    <td>
+    #</td>
+    <td>Ten sach</td>
+    <td>Tac gia</td>
+    <td>Mo ta</td>
+    <td></td>
+  </tr>
+  <tr *ngFor="let book of bookList;">
+    <td>
+      {{book.id}}
+    </td>
+    <td>
+      <a [routerLink]="['/book',book.id]">{{book.title}}</a>
+    </td>
+    <td>{{book.author}}</td>
+    <td>{{book.description}}</td>
+    <td>
+      <a [routerLink]="['/book', book.id, 'edit']">Edit</a> ||
+      <a [routerLink]="['/book',book.id, 'delete']" >Delete</a>
+    </td>
+  </tr>
+</table>

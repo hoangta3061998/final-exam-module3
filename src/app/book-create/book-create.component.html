@@ -1,0 +1,31 @@
+<h3>Them sach moi</h3>
+<form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label>
+      Title:
+      <br>
+      <input type="text" formControlName="title">
+    </label>
+  </div>
+  <div *ngIf="bookForm.get('title').invalid && bookForm.get('title').touched" style="color: red">
+    Title is required and min length is 5
+  </div>
+  <div>
+    <label>
+      Author:
+      <br>
+      <input type="text" formControlName="author">
+    </label>
+  </div>
+  <div *ngIf="bookForm.get('author').invalid && bookForm.get('author').touched" style="color: red">
+    Author is required!
+  </div>
+  <div>
+    <label>
+      Description:
+      <br>
+      <input type="text" formControlName="description">
+    </label>
+  </div>
+  <button type="submit">Submit</button>
+</form>
